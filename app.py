@@ -9,7 +9,7 @@ word_index=imdb.get_word_index()
 reverse_word_index={value:key for key,value in word_index.items()}
 
 #Load the pretrained model with relu activation
-model=load_model('simple_rnn_imdb_relu.h5')
+model=load_model('simple_rnn_imdb.h5')
 
 # Helper Functions
 def decode_review(encoded_review):
@@ -19,7 +19,7 @@ def decode_review(encoded_review):
 def preprocess_text(text):
     words=text.lower().split()
     encoded_review=[word_index.get(word,2)+3 for word in words]
-    padded_review=sequence.pad_seuences([encoded_review],maxlen=500)
+    padded_review=sequence.pad_sequences([encoded_review],maxlen=500)
     return padded_review
 
 # Prediction function
